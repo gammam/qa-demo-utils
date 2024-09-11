@@ -18,6 +18,7 @@ jobs:
       env: 
         PROJECT_ACRONYMS="${{ env.PROJECT_ACRONYMS }}"
       run: |
+        env
         # Assume acronyms are passed in as a comma-separated input, e.g. "RTD,ABC,XYZ"
         PROJECT_ACRONYMS="${{ env.project_acronyms }}"
         # Convert the input into a regex pattern, e.g. "(RTD|ABC|XYZ)"
@@ -27,6 +28,7 @@ jobs:
     - name: Extract JIRA ticket from branch name
       id: extract_ticket
       run: |
+        env
         echo "Current branch ${{ github.head_ref }}"
         BRANCH_NAME=${{ github.head_ref }}
         
