@@ -15,12 +15,11 @@ jobs:
 
     - name: Set input for project acronyms
       id: set_acronyms
-      env: 
-        PROJECT_ACRONYMS = ${{ vars.project_acronyms }}
+
       run: |
         env
         # Assume acronyms are passed in as a comma-separated input, e.g. "RTD,ABC,XYZ"
-        PROJECT_ACRONYMS="${{ env.project_acronyms }}"
+        PROJECT_ACRONYMS="${{ vars.project_acronyms }}"
         # Convert the input into a regex pattern, e.g. "(RTD|ABC|XYZ)"
         PROJECT_ACRONYMS_REGEX=$(echo "$PROJECT_ACRONYMS" | sed 's/,/|/g')
         echo "PROJECT_ACRONYMS_REGEX=($PROJECT_ACRONYMS_REGEX)" >> $GITHUB_ENV
@@ -43,7 +42,7 @@ jobs:
 
     - name: Validate JIRA Ticket
       env:
-        JIRA_BASE_URL: ${{ env.JIRA_BASE_URL }}
+        JIRA_BASE_URL: ${{ vars.JIRA_BASE_URL }}
         JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         JIRA_TICKET: ${{ env.JIRA_TICKET }}
