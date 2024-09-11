@@ -15,8 +15,7 @@ jobs:
 
     - name: Set input for project acronyms
       id: set_acronyms
-      env: 
-        PROJECT_ACRONYMS="${{ env.PROJECT_ACRONYMS }}"
+      
       run: |
         # Assume acronyms are passed in as a comma-separated input, e.g. "RTD,ABC,XYZ"
         PROJECT_ACRONYMS="${{ env.project_acronyms }}"
